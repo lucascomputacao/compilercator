@@ -5,6 +5,7 @@ operators (\+|\-|\*|\/|\,|\(|\)|\;|\=|\==|\~=|\<=|\>=|\>|\<|\{|\})
 blanks (\t|" ")
 
 %{
+  FILE *fp;
   int line;
 %}
 
@@ -28,19 +29,31 @@ return	|
 local	|
 nil	{printf("%s:Keyword\n ",yytext);}
 {digits} {printf("%s:Digits\n ",yytext);}
-{id} {printf("%s:Identifier\n ",yytext);}
+ /*{id} {printf("%s:Identifier\n ",yytext); fputs(yytext, fp);}*/
+{id} {printf("Identifier\n"); savetofile(yytext);}
 {operators} {printf("%s:Operators\n  ",yytext);}
-. {printf("%s:Error\n  ",yytext); return 0;}
+. {printf("%s: Error in line %d. This character does not belongs to language!\n  ",yytext, line); return 0;}
  /*.|\n*/
 %%
-void teste (void);
+#include <stdio.h>
+
+FILE *fp;
+
+void savetofile(char * text);
+
 int main(void){
+   fp = fopen("tokens.txt", "w+");
+
+   // funçaõ do lex
    yylex();
-   printf("\nLinhas : %d \n Valor:%s ", line, yytext);
-   //teste();
+   printf("\nTotal de linhas: %d \n", line);
+
+   // fecha arquivo
+   fclose(fp);
+
    return 0;
 }
 
-void teste (void){
-  printf("teste de chamada de função dentro do lex");
+void savetofile (char * text){
+    fwrite (text, 1, sizeof(text), fp);
 }
