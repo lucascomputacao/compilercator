@@ -1,10 +1,10 @@
-number [0-9]+
+number [0-9]+ 
 letter [a-zA-Z]
-name (_|[a-zA-Z])(_|[a-zA-Z]|[0-9]|[0-9]+)*
+name (_|[a-zA-Z])(_|[a-zA-Z]|[0-9]+)*
 blanks (\t|" ")
 newline \n
 string ((\").*(\")|(\').*(\'))  
-comment (\-)(\-).*
+comment \-\-.*
 
 %{
   FILE *fp;
@@ -45,7 +45,7 @@ print     {printf("%s: T_PRINT.\n", yytext); savetofile(yytext,"T_PRINT");}
 \>       {printf("%s: T_LT.\n", yytext); savetofile(yytext,"T_LT");}
 \<       {printf("%s: T_GT.\n", yytext); savetofile(yytext,"T_GT");}
 {comment} {printf("%s: Comment.\n", yytext);}
-{string}  {printf("%s: String.\n", yytext); savetofile(yytext,"String");}
+  /*{string}  {printf("%s: String.\n", yytext); savetofile(yytext,"String");}*/
 {newline} {line++;printf("New line.\n");}
 {blanks} {printf("Blank.\n");}
 {number} {printf("%s: T_NUMBER.\n ",yytext);savetofile(yytext,"T_NUMBER");}
