@@ -1,5 +1,5 @@
 -- código exemplo para testes
-function fact(n) -- isso é um comentário
+function fact(n)  -- isso é um comentário
    if n == 0 then -- isso é outro comentário
       return 1 -- isso é mais um comentário
    else        -- isso aind é comentário
