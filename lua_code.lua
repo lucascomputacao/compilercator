@@ -1,0 +1,8 @@
+-- código exemplo para testes
+function fact(n) -- isso é um comentário
+   if n == 0 then -- isso é outro comentário
+      return 1 -- isso é mais um comentário
+   else        -- isso aind é comentário
+      return n * fact(n - 1) -- isso já tá ficando chato, mas é comentário também
+   end						-- Eita que tem muito código nesse comentário, viu?
+end							-- Affff!!! Até que enfim acabou!!!
