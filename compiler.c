@@ -19,18 +19,35 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char * argv []){
 //    compilar analizador léxico com o lex
-    system(" lex ruleslexicalAnalyzer.l");
+    system("lex ruleslexicalAnalyzer.l");
 //    compilar o arquivo de regras gerado pelo lex
     system("gcc lex.yy.c -lfl");
-//    chamando executável com input exemplo
-    system("./a.out < lua_code.lua");
 
-    printf("\nSAÍDA DO ANALIZADOR LÉXICO:\n");
+//    teste quantidade de argumentos na linha de comando
+    if (argc >= 2){
+        char command [100];
+        strcpy(command,"./a.out < ");
+        char sourceFile[30];
+        strcpy(sourceFile,argv[1]);
+        printf("arquivo código fonte: %s\n", sourceFile);
+        strcat(command,sourceFile);
+        printf("command: %s\n",command);
+        // "./a.out < soucecode"
+        system(command);
+
+        printf("\nSAÍDA DO ANALIZADOR LÉXICO:\n");
 //    rodar pelo terminal pois a IDE cria uma sandbox e não acha o arquivo
-    system("cat tokens.txt");
+//        arquivo criado pelo analizador léxico com os tokens lidos
+        system("cat tokens.txt");
+    } else{
+        printf("Faltam parâmetros");
+    }
+
+
 
     return 0;
 
