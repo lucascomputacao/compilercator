@@ -8,7 +8,7 @@ comment (\-)(\-).*
 
 %{
   FILE *fp;
-  int line = 1;
+  int line = 1; //inicia com primeira linha
   void savetofile(char * text, char * tipo);
 %}
 
@@ -51,7 +51,6 @@ print     {printf("%s: T_PRINT.\n", yytext); savetofile(yytext,"T_PRINT");}
 {number} {printf("%s: T_NUMBER.\n ",yytext);savetofile(yytext,"T_NUMBER");}
 {name} {printf("%s: T_NAME.\n",yytext); savetofile(yytext,"T_NAME");}
 . {printf("%s: Error in line %d. This character doesn't belongs to language!\n",yytext, line); /*colocar return para parar no erro*/ }
- /*.|\n*/
 %%
 #include <stdio.h>
 

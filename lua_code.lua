@@ -1,5 +1,6 @@
 -- código exemplo para testes
 function fact(n)  -- isso é um comentário
+   variavel = 1; -- teste de variável
    if n == 0 then -- isso é outro comentário
       return 1 -- isso é mais um comentário
    else        -- isso aind é comentário

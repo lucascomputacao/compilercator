@@ -20,8 +20,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(){
-    printf("Saída analizador léxico:\n");
+int main(int argc, char * argv []){
+//    compilar analizador léxico com o lex
+    system(" lex ruleslexicalAnalyzer.l");
+//    compilar o arquivo de regras gerado pelo lex
+    system("gcc lex.yy.c -lfl");
+//    chamando executável com input exemplo
+    system("./a.out < lua_code.lua");
+
+    printf("\nSAÍDA DO ANALIZADOR LÉXICO:\n");
 //    rodar pelo terminal pois a IDE cria uma sandbox e não acha o arquivo
     system("cat tokens.txt");
 
