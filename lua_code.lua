@@ -13,3 +13,4 @@ end							-- Affff!!! Até que enfim acabou!!!
 
    +     -     *     /     ,    (     )     ;      =
    ==    ~=    <=    >=    <     >
+

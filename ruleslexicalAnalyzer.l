@@ -78,4 +78,5 @@ void savetofile (char * text, char * tipo){
     }else{
         fprintf(fp, ", [%s, \"%s\"]",tipo, text);
     }
+
 }

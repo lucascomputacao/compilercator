@@ -46,6 +46,5 @@ int main(int argc, char * argv []){
     } else{
         printf("Faltam parâmetros");
     }
-
     return 0;
 }
