@@ -28,23 +28,24 @@ int main(int argc, char * argv []){
     system("gcc lex.yy.c -lfl");
 
 //    teste quantidade de argumentos na linha de comando
-    if (argc >= 2){
-        char command [100];
+    if (argc >= 2 && argc <= 3){
+        char command [900];
         strcpy(command,"./a.out < ");
-        char sourceFile[30];
+        char sourceFile[900];
         strcpy(sourceFile,argv[1]);
 //        printf("arquivo código fonte: %s\n", sourceFile);
         strcat(command,sourceFile);
 //        printf("command: %s\n",command);
         // "./a.out < soucecode"
         system(command);
-        printf("\nSAÍDA DO ANALIZADOR LÉXICO:\n");
+//        printf("SAÍDA DO ANALISADOR LÉXICO:\n");
 //    rodar pelo terminal pois a IDE cria uma sandbox e não acha o arquivo
 //        arquivo criado pelo analizador léxico com os tokens lidos
         system("cat tokens.txt");
-        printf("\n");
+//        printf("\n");
     } else{
-        printf("Faltam parâmetros");
+        printf("Quantidade de  parâmetros está incorreta!\n");
     }
+
     return 0;
 }
