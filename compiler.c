@@ -33,9 +33,9 @@ int main(int argc, char * argv []){
         strcpy(command,"./a.out < ");
         char sourceFile[30];
         strcpy(sourceFile,argv[1]);
-        printf("arquivo código fonte: %s\n", sourceFile);
+//        printf("arquivo código fonte: %s\n", sourceFile);
         strcat(command,sourceFile);
-        printf("command: %s\n",command);
+//        printf("command: %s\n",command);
         // "./a.out < soucecode"
         system(command);
 
@@ -43,6 +43,7 @@ int main(int argc, char * argv []){
 //    rodar pelo terminal pois a IDE cria uma sandbox e não acha o arquivo
 //        arquivo criado pelo analizador léxico com os tokens lidos
         system("cat tokens.txt");
+        printf("\n");
     } else{
         printf("Faltam parâmetros");
     }
