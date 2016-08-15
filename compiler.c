@@ -38,7 +38,6 @@ int main(int argc, char * argv []){
 //        printf("command: %s\n",command);
         // "./a.out < soucecode"
         system(command);
-
         printf("\nSAÍDA DO ANALIZADOR LÉXICO:\n");
 //    rodar pelo terminal pois a IDE cria uma sandbox e não acha o arquivo
 //        arquivo criado pelo analizador léxico com os tokens lidos

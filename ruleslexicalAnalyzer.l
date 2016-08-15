@@ -67,7 +67,6 @@ int main(void){
    fclose(fp);
 
    return 0;
-
 }
 
 void savetofile (char * text, char * tipo){
