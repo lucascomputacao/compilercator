@@ -8,6 +8,7 @@ comment \-\-.*
 
 %{
   FILE *fp;
+  int count = 0;
   int line = 1; //inicia com primeira linha
   void savetofile(char * text, char * tipo);
 %}
@@ -42,8 +43,8 @@ print     {printf("%s: T_PRINT.\n", yytext); savetofile(yytext,"T_PRINT");}
 \~\=       {printf("%s: T_NEQ.\n", yytext); savetofile(yytext,"T_NEQ");}
 \<\=       {printf("%s: T_LTEQ.\n", yytext); savetofile(yytext,"T_LTEQ");}
 \>\=       {printf("%s: T_GTEQ.\n", yytext); savetofile(yytext,"T_GTEQ");}
-\>       {printf("%s: T_LT.\n", yytext); savetofile(yytext,"T_LT");}
-\<       {printf("%s: T_GT.\n", yytext); savetofile(yytext,"T_GT");}
+\<       {printf("%s: T_LT.\n", yytext); savetofile(yytext,"T_LT");}
+\>       {printf("%s: T_GT.\n", yytext); savetofile(yytext,"T_GT");}
 {comment} {printf("%s: Comment.\n", yytext);}
   /*{string}  {printf("%s: String.\n", yytext); savetofile(yytext,"String");}*/
 {newline} {line++;printf("New line.\n");}
@@ -71,5 +72,10 @@ int main(void){
 
 void savetofile (char * text, char * tipo){
     //printf("\nstring passada: %s\n", text); // usada para debugar a string passada para a esta função
-    fprintf(fp, "[%s, \"%s\"]\n",tipo, text);
+    if (count == 0 ){
+        fprintf(fp, "[%s, \"%s\"]",tipo, text);
+        count++;
+    }else{
+        fprintf(fp, ", [%s, \"%s\"]",tipo, text);
+    }
 }
