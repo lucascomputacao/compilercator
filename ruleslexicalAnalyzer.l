@@ -8,7 +8,7 @@ comment \-\-.*
 
 %{
   FILE *fp;
-  int count = 0;
+  int count = 0, erro = 0;
   int line = 1; //inicia com primeira linha
   void savetofile(char * text, char * tipo);
 %}
@@ -51,7 +51,7 @@ print     {savetofile(yytext,"T_PRINT");}
 {blanks}
 {number} {savetofile(yytext,"T_NUMBER");}
 {name} {savetofile(yytext,"T_NAME");}
-. {printf("%s: Error in line %d. This character doesn't belongs to language!\n",yytext, line); /*colocar return para parar no erro*/ }
+. {printf("Erro na linha %d: \"%s\" Esse caractere não pertence a linguagem!\n",line,yytext); erro++; /*colocar return para parar no erro*/ }
 %%
 #include <stdio.h>
 
@@ -65,6 +65,7 @@ int main(void){
    yylex();
    //printf("\nTotal de linhas: %d \n", line);
    fclose(fp);
+   //printf("\nErros: %d", erro);
 
    return 0;
 }
